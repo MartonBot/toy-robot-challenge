@@ -22,8 +22,9 @@ namespace Implementation.Robot
         private const string east = "EAST";
         private const string west = "WEST";
         private const string intPattern = @"\d{1,9}";
-        private static string commandPattern = @$"(?'verb'{report}|{move}|{left}|{right})|((?'verb'{place}) (?'xpos'{intPattern}), ?(?'ypos'{intPattern}), ?(?'direction'{north}|{south}|{east}|{west}))";
-        private Regex commandRegex = new Regex(commandPattern);
+        private const string zeroOrOne = @"?";
+        private static readonly string _commandPattern = @$"(?'verb'{report}|{move}|{left}|{right})|((?'verb'{place}) (?'xpos'{intPattern}), {zeroOrOne}(?'ypos'{intPattern}), {zeroOrOne}(?'direction'{north}|{south}|{east}|{west}))";
+        private static readonly Regex _commandRegex = new Regex(_commandPattern);
 
         private readonly IConfiguration _config;
 
@@ -42,7 +43,7 @@ namespace Implementation.Robot
             {
                 input = input.ToUpper();
             }
-            Match match = commandRegex.Match(input);
+            Match match = _commandRegex.Match(input);
 
             if (!match.Success)
                 throw new ArgumentException($"Not a valid input: {input}");

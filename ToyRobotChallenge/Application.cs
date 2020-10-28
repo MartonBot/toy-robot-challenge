@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 namespace ToyRobotChallenge
 {
-    class ApplicationHost
+    class Application
     {
         private readonly ILogger _logger;
         private readonly IParser _parser;
         private readonly IConfiguration _config;
         private readonly IRobot _robot;
 
-        public ApplicationHost(ILogger logger, IConfiguration config, IParser parser, IRobot robot)
+        public Application(ILogger logger, IConfiguration config, IParser parser, IRobot robot)
         {
             _logger = logger;
             _config = config;
@@ -88,7 +88,12 @@ namespace ToyRobotChallenge
                 catch (ArgumentException)
                 {
                     _logger.Log($"Invalid command: {inputLine}");
-                    Console.WriteLine("Failed to parse command. Please enter a command in the form VERB [X, Y, DIRECTION]");
+                    Console.WriteLine("Failed to parse command. Please enter one of:");
+                    Console.WriteLine("PLACE <x>, <y>, <direction>");
+                    Console.WriteLine("MOVE");
+                    Console.WriteLine("LEFT");
+                    Console.WriteLine("RIGHT");
+                    Console.WriteLine("REPORT");
                 }
             }
             while (inputLine != "q");

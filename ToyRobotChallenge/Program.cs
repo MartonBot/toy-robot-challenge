@@ -23,7 +23,7 @@ namespace ToyRobotChallenge
 
             // registering dependency injection services
             var services = new ServiceCollection()
-                .AddSingleton<ApplicationHost>()
+                .AddSingleton<Application>()
                 .AddSingleton<ILogger, ConsoleLogger>()
                 .AddSingleton<IConfiguration>(config)
                 .AddSingleton<IParser, Parser>()
@@ -34,7 +34,7 @@ namespace ToyRobotChallenge
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionHandler);
 
             // running the console app
-            services.GetService<ApplicationHost>().Run(args);
+            services.GetService<Application>().Run(args);
         }
         static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
