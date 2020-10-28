@@ -29,5 +29,21 @@ namespace Tests
 
             Assert.Equal(final, output);
         }
+
+        [Theory]
+        [InlineData("4, 4, NORTH", "4, 4, NORTH")]
+        [InlineData("0, 2, WEST", "0, 2, WEST")]
+        [InlineData("3, 0, SOUTH", "3, 0, SOUTH")]
+        public void ProcessCommand_Move_WhenWouldFall_ShouldNotMove(string initial, string final)
+        {
+            var placeCommand = _parser.Parse($"PLACE {initial}");
+            _robot.SubmitCommand(placeCommand);
+            var move = _parser.Parse("MOVE");
+            _robot.SubmitCommand(move);
+            var report = _parser.Parse("REPORT");
+            var output = _robot.SubmitCommand(report);
+
+            Assert.Equal(final, output);
+        }
     }
 }
