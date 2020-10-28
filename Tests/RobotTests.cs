@@ -1,4 +1,5 @@
 ﻿using Robot;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Tests
@@ -74,6 +75,18 @@ namespace Tests
             var output = _robot.SubmitCommand(_parser.Parse("REPORT"));
 
             Assert.Equal(final, output);
+        }
+
+        [Theory]
+        [InlineData("TestData/TestData1_Valid.txt", "4, 4, NORTH")]
+        [InlineData("TestData/TestData2_Valid.txt", "0, 4, NORTH")]
+        public void RunCommandsFromFile_ShouldEndUpInExpectedState(string fileName, string expectedOutput)
+        {
+            List<ICommand> commands = _parser.ParseFile(fileName);
+            commands.ForEach(command => _robot.SubmitCommand(command));
+            var actualOutput = _robot.SubmitCommand(_parser.Parse("REPORT"));
+
+            Assert.Equal(expectedOutput, actualOutput);
         }
     }
 }
