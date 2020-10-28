@@ -17,7 +17,8 @@ namespace Tests
             var config = configBuilder.Build();
 
             services.AddSingleton<IConfiguration>(config)
-                .AddTransient<IParser, Parser>();
+                .AddTransient<IParser, Parser>()
+                .AddTransient<IRobot, ToyRobot>();
         }
     }
 }
