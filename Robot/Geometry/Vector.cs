@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common
+namespace Robot.Geometry
 {
     public class Vector
     {

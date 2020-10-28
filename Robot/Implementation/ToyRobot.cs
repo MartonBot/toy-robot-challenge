@@ -2,6 +2,7 @@
 using Common.Log;
 using Microsoft.Extensions.Configuration;
 using Robot;
+using Robot.Geometry;
 using System;
 
 namespace Implementation.Robot
