@@ -1,4 +1,4 @@
-# Martin's Toy Robot Challenge'
+# Martin's Toy Robot Challenge
 
 I was asked to do the toy robot challenge for an interview. Here is my crack at it.
 
