@@ -26,6 +26,13 @@ namespace Implementation.Robot
         private static readonly string _commandPattern = @$"(?'verb'{report}|{move}|{left}|{right})|((?'verb'{place}) (?'xpos'{intPattern}), {zeroOrOne}(?'ypos'{intPattern}), {zeroOrOne}(?'direction'{north}|{south}|{east}|{west}))";
         private static readonly Regex _commandRegex = new Regex(_commandPattern);
 
+        private static readonly Dictionary<string, Vector> _directionVectors = new Dictionary<string, Vector> {
+            {north, Vector.NORTH},
+            {south, Vector.SOUTH},
+            {east, Vector.EAST},
+            {west, Vector.WEST}
+        };
+
         private readonly IConfiguration _config;
 
         public Parser(IConfiguration config)
@@ -80,30 +87,12 @@ namespace Implementation.Robot
                     int ypos = int.Parse(match.Groups["ypos"].Value);
                     Vector position = new Vector(xpos, ypos);
                     string strDirection = match.Groups["direction"].Value;
-                    Vector direction = ParseDirection(strDirection);
+                    Vector direction = _directionVectors[strDirection];
                     return new Command(verb, position, direction);
 
                 default:
                     throw new ArgumentException($"Not a valid command verb: {verb}");
             }
-        }
-
-        private Vector ParseDirection(string direction)
-        {
-            switch (direction)
-            {
-                case north:
-                    return Vector.NORTH;
-                case south:
-                    return Vector.SOUTH;
-                case east:
-                    return Vector.EAST;
-                case west:
-                    return Vector.WEST;
-                default:
-                    throw new InvalidOperationException($"Not a valid direction: {direction}");
-            }
-
         }
     }
 }
