@@ -1,4 +1,6 @@
-﻿namespace Common
+﻿using System;
+
+namespace Common
 {
     public class Vector
     {
@@ -10,5 +12,27 @@
             this.X = X;
             this.Y = Y;
         }
+        /// <summary>
+        /// Return a direction string if the vector is one of the cardinal direction
+        /// </summary>
+        ///
+        public string ToDirectionString()
+        {
+            string marker = $"{X}{Y}";
+            switch (marker)
+            {
+                case "01":
+                    return "NORTH";
+                case "0-1":
+                    return "SOUTH";
+                case "10":
+                    return "EAST";
+                case "-10":
+                    return "WEST";
+                default:
+                    throw new InvalidOperationException($"This vector is not a cardinal direction: {X}, {Y}.");
+            }
+        }
+
     }
 }

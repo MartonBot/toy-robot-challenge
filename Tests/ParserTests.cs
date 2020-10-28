@@ -1,5 +1,6 @@
 using Robot;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Tests
@@ -41,6 +42,19 @@ namespace Tests
         public void Parse_WhenPlaceCommandWithInvalidParams_ShouldThrowArgumentException(string input)
         {
             Assert.Throws<ArgumentException>(() => _parser.Parse(input));
+        }
+
+        [Theory]
+        [InlineData("PLACE 1, 3, WEST", "WEST")]
+        [InlineData("PLACE 1,3, WEST", "WEST")]
+        [InlineData("PLACE 1,3,WEST", "WEST")]
+        public void Parse_WhenValidPlaceCommand_ShouldRegisterParameters(string input, string expectedDirection)
+        {
+            ICommand command = _parser.Parse(input);
+            Assert.NotNull(command);
+            Assert.Equal(expectedDirection, command.Direction.ToDirectionString());
+            Assert.NotNull(command.Position);
+            Assert.NotNull(command.Direction);
         }
     }
 }
