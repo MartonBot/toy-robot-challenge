@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Robot;
 using Robot.Geometry;
 using System;
+using System.Collections.Generic;
 
 namespace Implementation.Robot
 {
@@ -32,25 +33,72 @@ namespace Implementation.Robot
             // initially the robot is somewhere else
             IsOnBoard = false;
         }
+
         public string SubmitCommand(ICommand command)
         {
             // if this had to scale to a lot more commands, we could use a dictionary of delegates here
             switch (command.Verb)
             {
                 case "MOVE":
-                    return Move();
+                    return DoIfOnBoard(Move);
                 case "LEFT":
-                    return Left();
+                    return DoIfOnBoard(Left);
                 case "RIGHT":
-                    return Right();
+                    return DoIfOnBoard(Right);
                 case "REPORT":
-                    return Report();
+                    return DoIfOnBoard(Report);
                 case "PLACE":
                     return Place(command.Position, command.Direction);
                 default:
                     throw new InvalidOperationException($"No such command as {command.Verb}");
 
             }
+        }
+
+        private string DoIfOnBoard(RobotAction action)
+        {
+            string output = null;
+            if (IsOnBoard)
+            {
+                output = action();
+            }
+            else
+            {
+                _logger.Log($"Currently not on the board. Ignoring command.");
+            }
+            return output;
+        }
+
+        private string Move()
+        {
+            bool safe = IsValidMovement();
+            if (safe)
+            {
+                _logger.Log("Safe to move.");
+                Position += Direction;
+            }
+            else
+            {
+                _logger.Log($"Unsafe to move. Ignoring command.");
+            }
+            return null;
+        }
+
+        private string Left()
+        {
+            Direction = Direction.Left();
+            return null;
+        }
+
+        private string Right()
+        {
+            Direction = Direction.Right();
+            return null;
+        }
+
+        private string Report()
+        {
+            return $"{Position.X}, {Position.Y}, {Direction.ToDirectionString()}";
         }
 
         private string Place(Vector position, Vector direction)
@@ -69,52 +117,6 @@ namespace Implementation.Robot
                 _logger.Log($"Unsafe to place. Ignoring command.");
             }
             return EMPTY_OUTPUT;
-        }
-
-        private string Move()
-        {
-            if (IsOnBoard)
-            {
-
-                bool safe = IsValidMovement();
-                if (safe)
-                {
-                    _logger.Log("Safe to move.");
-                    Position += Direction;
-                }
-                else
-                {
-                    _logger.Log($"Unsafe to move. Ignoring command.");
-                }
-            }
-            else
-                _logger.Log($"Currently not on the board. Ignoring command.");
-
-            return EMPTY_OUTPUT;
-        }
-
-        private string Left()
-        {
-            if (IsOnBoard)
-            {
-                Direction = Direction.Left();
-            }
-            return EMPTY_OUTPUT;
-        }
-
-        private string Right()
-        {
-            if (IsOnBoard)
-            {
-                Direction = Direction.Right();
-            }
-            return EMPTY_OUTPUT;
-        }
-
-        private string Report()
-        {
-            // here we make the choice for the robot to output an empty string when there is nothing to return - null would be fine
-            return IsOnBoard ? $"{Position.X}, {Position.Y}, {Direction.ToDirectionString()}" : EMPTY_OUTPUT;
         }
 
         private bool IsValidPlacement(Vector position)
@@ -145,4 +147,7 @@ namespace Implementation.Robot
                 || position.Y >= BoardSizeY;
         }
     }
+
+    // Declare a delegate type for commands that can be actioned only when the robot is on the board
+    delegate string RobotAction();
 }
