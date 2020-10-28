@@ -4,7 +4,7 @@ I was asked to do the toy robot challenge for an interview. Here is my implement
 
 ## Getting Started
 
-Clone the project, `cd` into the `ToyRobotChallenge` directory and run `dotnet run`.
+Clone the project, `cd toy-robot-challenge/ToyRobotChallenge` and `dotnet run`.
 
 The program consists in a console application that can be run in two modes, interactive and file mode.
 
