@@ -1,6 +1,7 @@
 ﻿using Common;
+using Robot;
 
-namespace Robot
+namespace Implementation.Robot
 {
     class Command : ICommand
     {

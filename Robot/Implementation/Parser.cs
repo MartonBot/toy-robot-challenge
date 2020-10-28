@@ -1,12 +1,13 @@
 ﻿using Common;
 using Microsoft.Extensions.Configuration;
+using Robot;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Robot
+namespace Implementation.Robot
 {
     public class Parser : IParser
     {

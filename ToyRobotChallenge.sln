@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyRobotChallenge", "ToyRobotChallenge\ToyRobotChallenge.csproj", "{41CD7ADA-3C82-4A20-AF8E-0728906F8F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToyRobotChallenge", "ToyRobotChallenge\ToyRobotChallenge.csproj", "{41CD7ADA-3C82-4A20-AF8E-0728906F8F05}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E556CC20-2392-437B-880B-FC01896FDD93}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{CCD67320-0A0E-4668-97DD-50417767913E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{CCD67320-0A0E-4668-97DD-50417767913E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot", "Robot\Robot.csproj", "{F7EFE3C4-F542-4460-8FED-58E1712E12B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robot", "Robot\Robot.csproj", "{F7EFE3C4-F542-4460-8FED-58E1712E12B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{50B7F6BA-D4CC-4747-BC43-5E2F197A4BF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{50B7F6BA-D4CC-4747-BC43-5E2F197A4BF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

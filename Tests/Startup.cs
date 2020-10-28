@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Common.Log;
+using Implementation.Robot;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Robot;
 using System.IO;
@@ -18,7 +20,8 @@ namespace Tests
 
             services.AddSingleton<IConfiguration>(config)
                 .AddTransient<IParser, Parser>()
-                .AddTransient<IRobot, ToyRobot>();
+                .AddTransient<IRobot, ToyRobot>()
+                .AddTransient<ILogger, ConsoleLogger>();
         }
     }
 }
