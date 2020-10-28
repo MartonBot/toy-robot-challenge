@@ -33,6 +33,10 @@ namespace Implementation.Robot
             {
                 case "MOVE":
                     return Move();
+                case "LEFT":
+                    return Left();
+                case "RIGHT":
+                    return Right();
                 case "REPORT":
                     return Report();
                 case "PLACE":
@@ -79,6 +83,24 @@ namespace Implementation.Robot
             else
                 _logger.Log($"Currently not on the board. Ignoring command.");
 
+            return EMPTY_OUTPUT;
+        }
+
+        private string Left()
+        {
+            if (IsOnBoard)
+            {
+                Direction = Direction.Left();
+            }
+            return EMPTY_OUTPUT;
+        }
+
+        private string Right()
+        {
+            if (IsOnBoard)
+            {
+                Direction = Direction.Right();
+            }
             return EMPTY_OUTPUT;
         }
 

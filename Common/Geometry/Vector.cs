@@ -43,5 +43,21 @@ namespace Common
         public static Vector operator +(Vector a, Vector b) => new Vector(a.X + b.X, a.Y + b.Y);
 
         public static Vector operator -(Vector a, Vector b) => new Vector(a.X - b.X, a.Y - b.Y);
+
+        /// <summary>
+        /// Multiply the vector by the clockwise unit rotation matrix</summary>
+        ///
+        public Vector Right()
+        {
+            return new Vector(Y, -X);
+        }
+
+        /// <summary>
+        /// Multiply the vector by the anti-clockwise unit rotation matrix</summary>
+        ///
+        public Vector Left()
+        {
+            return new Vector(-Y, X);
+        }
     }
 }
