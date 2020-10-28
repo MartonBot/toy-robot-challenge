@@ -21,6 +21,8 @@ namespace Implementation.Robot
         private Vector Position { get; set; }
         private Vector Direction { get; set; }
 
+        private readonly Dictionary<string, RobotAction> _actionDelegates;
+
         public ToyRobot(ILogger logger, IConfiguration config)
         {
             _logger = logger;
@@ -32,30 +34,39 @@ namespace Implementation.Robot
 
             // initially the robot is somewhere else
             IsOnBoard = false;
+
+            // we build a dictionary of delegates for simple commands
+            _actionDelegates = new Dictionary<string, RobotAction>
+            {
+                {"MOVE", Move},
+                {"LEFT", Left},
+                {"RIGHT", Right},
+                {"REPORT", Report}
+            };
         }
 
         public string SubmitCommand(ICommand command)
         {
-            // if this had to scale to a lot more commands, we could use a dictionary of delegates here
-            switch (command.Verb)
+            string verb = command.Verb;
+
+            // for simple commands,the robot only executes the command when it is on the board
+            switch (verb)
             {
                 case "MOVE":
-                    return DoIfOnBoard(Move);
                 case "LEFT":
-                    return DoIfOnBoard(Left);
                 case "RIGHT":
-                    return DoIfOnBoard(Right);
                 case "REPORT":
-                    return DoIfOnBoard(Report);
+                    return ExecuteIfOnBoard(_actionDelegates[verb]);
+
                 case "PLACE":
                     return Place(command.Position, command.Direction);
-                default:
-                    throw new InvalidOperationException($"No such command as {command.Verb}");
 
+                default:
+                    throw new InvalidOperationException($"No such command as {verb}");
             }
         }
 
-        private string DoIfOnBoard(RobotAction action)
+        private string ExecuteIfOnBoard(RobotAction action)
         {
             string output = null;
             if (IsOnBoard)
