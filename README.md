@@ -29,5 +29,5 @@ Run `cd toy-robot-challenge` and `dotnet test`.
 
 ## Acknowledgments
 
-Specifications at https://joneaves.wordpress.com/2014/07/21/toy-robot-coding-test/
-Project motivation and inspiration from https://bitbucket.org/simonpb/toy-robot-challenge.
+* Specifications at https://joneaves.wordpress.com/2014/07/21/toy-robot-coding-test/
+* Project motivation and inspiration from https://bitbucket.org/simonpb/toy-robot-challenge.
