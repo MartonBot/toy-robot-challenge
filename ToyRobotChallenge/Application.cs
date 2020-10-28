@@ -23,9 +23,9 @@ namespace ToyRobotChallenge
 
         public void Run(string[] args)
         {
-            // if an arg is given, treat it as the name of the file to read
             if (args.Length == 1)
             {
+                // if an arg is given, treat it as the name of the file to read
                 string fileName = args[0];
                 FileMode(fileName);
             }
@@ -35,6 +35,7 @@ namespace ToyRobotChallenge
                 InteractiveMode();
             }
 
+            // end of the application
             _logger.Log("Host shutdown.");
         }
 
@@ -48,12 +49,14 @@ namespace ToyRobotChallenge
             }
             catch (Exception e)
             {
+                // it's not ideal to catch a general exception here, but there are so many underlying exceptions - maybe add an exception filter
                 _logger.Log($"Failed to parse file {fileName}. Underlying exception: {e.Message}");
                 Console.WriteLine("Failed to parse file. The file must be a list of valid robot commands on each line.");
             }
 
             if (commands != null)
             {
+                // this could be one line in LINQ, but is arguably more readable this way
                 foreach (ICommand command in commands)
                 {
                     string output = _robot.SubmitCommand(command);
@@ -101,6 +104,7 @@ namespace ToyRobotChallenge
 
         private void WriteRobotOutputToConsole(string output)
         {
+            // do not print anything to the console if the robot's output is empty
             if (!string.IsNullOrWhiteSpace(output))
                 Console.WriteLine(output);
         }

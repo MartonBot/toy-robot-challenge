@@ -24,12 +24,17 @@ namespace Implementation.Robot
         {
             _logger = logger;
             _config = config;
+
+            // the robot's knowledge of the board dimensions
             BoardSizeX = _config.GetValue<int>("settings:boardSizeX");
             BoardSizeY = _config.GetValue<int>("settings:boardSizeY");
+
+            // initially the robot is somewhere else
             IsOnBoard = false;
         }
         public string SubmitCommand(ICommand command)
         {
+            // if this had to scale to a lot more commands, we could use a dictionary of delegates here
             switch (command.Verb)
             {
                 case "MOVE":
@@ -50,10 +55,11 @@ namespace Implementation.Robot
 
         private string Place(Vector position, Vector direction)
         {
+            // nothing says the robot can't be placed again somewhere else when it is already on the board
             bool safe = IsValidPlacement(position);
             if (safe)
             {
-                _logger.Log("Safe to place.");
+                _logger.Log($"Safe to place at {position.X}, ${position.Y}.");
                 Position = position;
                 Direction = direction;
                 IsOnBoard = true;
@@ -107,6 +113,7 @@ namespace Implementation.Robot
 
         private string Report()
         {
+            // here we make the choice for the robot to output an empty string when there is nothing to return - null would be fine
             return IsOnBoard ? $"{Position.X}, {Position.Y}, {Direction.ToDirectionString()}" : EMPTY_OUTPUT;
         }
 

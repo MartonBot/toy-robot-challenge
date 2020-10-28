@@ -36,6 +36,7 @@ namespace ToyRobotChallenge
             // running the console app
             services.GetService<Application>().Run(args);
         }
+
         static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
             Debug.WriteLine((e.ExceptionObject as Exception).Message);
