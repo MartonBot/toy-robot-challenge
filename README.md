@@ -8,9 +8,9 @@ From the project's root directory, run `cd ToyRobotChallenge` and `dotnet run`.
 
 The program consists in a console application that can be run in two modes, interactive and file mode.
 
-To run in file mode, provide your file as a single argument: `dotnet run mycommandfile.txt`. Any other number of arguments will default back to interactive mode.
+To run in file mode, provide your file as a single argument: `dotnet run somecommands.txt`. Any other number of arguments will default back to interactive mode.
 
-For the user's convenience, the commands are case insensitive by default, but this can be changed in the `appsettings.json` configuration file of the `ToyRobotChallenge` project, along with some other settings, such as the size of the board.
+For the user's convenience, the commands are case insensitive by default, but this can be changed in the `appsettings.json` configuration file of the `ToyRobotChallenge` project, along with some other settings, such as the size of the board or whether to display useful logs.
 
 According to the specifications, the robot is not very chatty, even when things go wrong, so it can be useful to enable the logs if you are lost...
 
