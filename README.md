@@ -4,13 +4,13 @@ I was asked to do the toy robot challenge for an interview. Here is my implement
 
 ## Getting Started
 
-Clone the project, `cd toy-robot-challenge/ToyRobotChallenge` and `dotnet run`.
+From the project's root directory, run `cd ToyRobotChallenge` and `dotnet run`.
 
 The program consists in a console application that can be run in two modes, interactive and file mode.
 
 To run in file mode, provide your file as a single argument: `dotnet run mycommandfile.txt`. Any other number of arguments will default back to interactive mode.
 
-For the user's convenience, the commands are case insensitive by default, but this can be changed in the `appsettings.json` configuration file, along with some other settings, such as the size of the board.
+For the user's convenience, the commands are case insensitive by default, but this can be changed in the `appsettings.json` configuration file of the `ToyRobotChallenge` project, along with some other settings, such as the size of the board.
 
 According to the specifications, the robot is not very chatty, even when things go wrong, so it can be useful to enable the logs if you are lost...
 
@@ -21,7 +21,7 @@ According to the specifications, the robot is not very chatty, even when things 
 
 ## Running the tests
 
-Run `dotnet test`.
+Run `cd toy-robot-challenge` and `dotnet test`.
 
 ## Authors
 
