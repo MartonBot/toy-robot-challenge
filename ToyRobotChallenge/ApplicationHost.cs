@@ -57,7 +57,7 @@ namespace ToyRobotChallenge
                 foreach (ICommand command in commands)
                 {
                     string output = _robot.SubmitCommand(command);
-                    Console.WriteLine(output);
+                    WriteRobotOutputToConsole(output);
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace ToyRobotChallenge
                     command = _parser.Parse(inputLine);
                     _logger.Log($"Parsed command: {command.Verb}");
                     string output = _robot.SubmitCommand(command);
-                    Console.WriteLine(output);
+                    WriteRobotOutputToConsole(output);
                 }
                 catch (ArgumentException)
                 {
@@ -92,6 +92,12 @@ namespace ToyRobotChallenge
                 }
             }
             while (inputLine != "q");
+        }
+
+        private void WriteRobotOutputToConsole(string output)
+        {
+            if (!string.IsNullOrWhiteSpace(output))
+                Console.WriteLine(output);
         }
     }
 }
