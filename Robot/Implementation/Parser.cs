@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Robot
@@ -46,9 +48,16 @@ namespace Robot
             return BuildCommand(match);
         }
 
+        /// <summary>
+        /// Parses a file where each line is a robot command
+        /// </summary>
+        ///
         public List<ICommand> ParseFile(string fileName)
         {
-            throw new NotImplementedException();
+            List<ICommand> commands = new List<ICommand>();
+            string[] inputLines = File.ReadAllLines(fileName);
+            inputLines.ToList().ForEach((input) => commands.Add(Parse(input)));
+            return commands;
         }
 
         private Command BuildCommand(Match match)
