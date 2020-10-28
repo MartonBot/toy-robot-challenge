@@ -4,6 +4,12 @@ namespace Common
 {
     public class Vector
     {
+        public static readonly Vector NORTH = new Vector(0, 1);
+        public static readonly Vector SOUTH = new Vector(0, -1);
+        public static readonly Vector EAST = new Vector(1, 0);
+        public static readonly Vector WEST = new Vector(-1, 0);
+        public static readonly Vector ZERO = new Vector(0, 0);
+
         public int X { get; set; }
         public int Y { get; set; }
 

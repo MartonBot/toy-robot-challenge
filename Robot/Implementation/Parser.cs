@@ -63,9 +63,35 @@ namespace Robot
                 case right:
                     return new Command(verb);
 
+                case place:
+                    int xpos = int.Parse(match.Groups["xpos"].Value);
+                    int ypos = int.Parse(match.Groups["ypos"].Value);
+                    Vector position = new Vector(xpos, ypos);
+                    string strDirection = match.Groups["direction"].Value;
+                    Vector direction = ParseDirection(strDirection);
+                    return new Command(verb, position, direction);
+
                 default:
                     throw new ArgumentException($"Not a valid command verb: {verb}");
             }
+        }
+
+        private Vector ParseDirection(string direction)
+        {
+            switch (direction)
+            {
+                case north:
+                    return Vector.NORTH;
+                case south:
+                    return Vector.SOUTH;
+                case east:
+                    return Vector.EAST;
+                case west:
+                    return Vector.WEST;
+                default:
+                    throw new InvalidOperationException($"Not a valid direction: {direction}");
+            }
+
         }
     }
 }

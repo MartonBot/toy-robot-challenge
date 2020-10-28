@@ -1,7 +1,4 @@
 ﻿using Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Robot
 {
@@ -16,6 +13,12 @@ namespace Robot
         public Command(string verb)
         {
             Verb = verb;
+        }
+
+        public Command(string verb, Vector position, Vector direction) : this(verb)
+        {
+            Position = position;
+            Direction = direction;
         }
     }
 }
