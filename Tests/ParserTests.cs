@@ -1,6 +1,7 @@
 using Robot;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Xunit;
 
 namespace Tests
@@ -55,6 +56,30 @@ namespace Tests
             Assert.Equal(expectedDirection, command.Direction.ToDirectionString());
             Assert.NotNull(command.Position);
             Assert.NotNull(command.Direction);
+        }
+
+        [Theory]
+        [InlineData("TestData/TestData1_Valid.txt", 24)]
+        [InlineData("TestData/TestData2_Valid.txt", 25)]
+        public void ParseFile_WhenValid_ShouldProduceCommandList(string fileName, int expectedCount)
+        {
+            List<ICommand> commands = _parser.ParseFile(fileName);
+            Assert.NotNull(commands);
+            Assert.Equal(expectedCount, commands.Count);
+        }
+
+        [Theory]
+        [InlineData("TestData/TestData3_Invalid.txt")]
+        public void ParseFile_WhenInvalid_ShouldThrowException(string fileName)
+        {
+            Assert.Throws<ArgumentException>(() => _parser.ParseFile(fileName));
+        }
+
+        [Theory]
+        [InlineData("TestData/FakeFile.txt")]
+        public void ParseFile_WhenNoFile_ShouldThrowException(string fileName)
+        {
+            Assert.Throws<FileNotFoundException>(() => _parser.ParseFile(fileName));
         }
     }
 }
