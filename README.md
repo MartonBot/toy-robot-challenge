@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/Altirion/Toy%20Robot%20Challenge/_apis/build/status/MartonBot.toy-robot-challenge?branchName=main)](https://dev.azure.com/Altirion/Toy%20Robot%20Challenge/_build/latest?definitionId=13&branchName=main)
+
 # Martin's Toy Robot Challenge
 
 I was asked to do the toy robot challenge for an interview. Here is my implementation.
