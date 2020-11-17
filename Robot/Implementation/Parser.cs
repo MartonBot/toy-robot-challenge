@@ -70,7 +70,7 @@ namespace Implementation.Robot
             return commands;
         }
 
-        private Command BuildCommand(Match match)
+        private ICommand BuildCommand(Match match)
         {
             string verb = match.Groups["verb"].Value;
 
