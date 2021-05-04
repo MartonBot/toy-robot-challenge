@@ -1,5 +1,4 @@
-﻿using Common;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Robot;
 using Robot.Geometry;
 using System;

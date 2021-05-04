@@ -1,5 +1,4 @@
-﻿using Common;
-using Common.Log;
+﻿using Common.Log;
 using Microsoft.Extensions.Configuration;
 using Robot;
 using Robot.Geometry;
@@ -118,7 +117,7 @@ namespace Implementation.Robot
             bool safe = IsValidPlacement(position);
             if (safe)
             {
-                _logger.Log($"Safe to place at {position.X}, ${position.Y}.");
+                _logger.Log($"Safe to place at {position.X}, {position.Y}.");
                 Position = position;
                 Direction = direction;
                 IsOnBoard = true;

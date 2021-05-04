@@ -1,5 +1,4 @@
-﻿using Common;
-using Robot;
+﻿using Robot;
 using Robot.Geometry;
 
 namespace Implementation.Robot

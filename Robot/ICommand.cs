@@ -1,5 +1,4 @@
-﻿using Common;
-using Robot.Geometry;
+﻿using Robot.Geometry;
 
 namespace Robot
 {

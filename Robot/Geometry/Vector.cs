@@ -24,20 +24,14 @@ namespace Robot.Geometry
         ///
         public string ToDirectionString()
         {
-            string marker = $"{X}{Y}";
-            switch (marker)
+            return $"{X}{Y}" switch
             {
-                case "01":
-                    return "NORTH";
-                case "0-1":
-                    return "SOUTH";
-                case "10":
-                    return "EAST";
-                case "-10":
-                    return "WEST";
-                default:
-                    throw new InvalidOperationException($"This vector is not a cardinal direction: {X}, {Y}.");
-            }
+                "01" => "NORTH",
+                "0-1" => "SOUTH",
+                "10" => "EAST",
+                "-10" => "WEST",
+                _ => throw new InvalidOperationException($"This vector is not a cardinal direction: {X}, {Y}."),
+            };
         }
 
         public static Vector operator +(Vector a, Vector b) => new Vector(a.X + b.X, a.Y + b.Y);
